@@ -16,9 +16,15 @@ podman build . -t cc-toolchain
 ```
 
 ##### Run the container:
+
+Copy the `start_example.sh` script:
 ```
-podman run -v /path/to/your/compiler-construction-folder:/home/user/cc \
---userns=keep-id -w /home/user/cc -it cc-toolchain:latest
+cp start_example.sh start.sh
 ```
 
-Alternatively, run the container via the `start.sh` script to avoid repetitively typing out this command.
+Adjust the new `start.sh` script to your liking. **You have to specify your shared folder.**
+
+Finally, run the container:
+```
+./start.sh
+```
