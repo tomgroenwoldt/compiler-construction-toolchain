@@ -4,7 +4,7 @@ FROM debian:bullseye
 RUN apt-get update
 RUN apt-get -y install bison build-essential clang-9 curl flex \
 ghc git libedit-dev libgmp-dev libz-dev \
-llvm-9 libnuma-dev wget lsb-release
+llvm-9 libnuma-dev wget lsb-release p7zip
 RUN curl -sSL https://get.haskellstack.org/ | sh
 
 # Install convenient tools for development. 
