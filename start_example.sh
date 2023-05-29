@@ -1,9 +1,8 @@
 #!/bin/bash
 
 CONTAINER_NAME=cc-toolchain
-EXISTS=$(podman container exists $CONTAINER_NAME)
 
-if $EXISTS; then
+if $(podman container exists $CONTAINER_NAME); then
   podman start $CONTAINER_NAME && podman attach $CONTAINER_NAME
 else
   podman run \
