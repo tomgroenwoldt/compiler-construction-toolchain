@@ -8,6 +8,7 @@ else
   podman run \
   --name $CONTAINER_NAME \
   -v /path/to/your/shared/folder:/home/user/cc \
+  -e HELIX_RUNTIME=/home/user/helix/runtime \
   --userns=keep-id \
   -w /home/user/cc \
   -it cc-toolchain:latest

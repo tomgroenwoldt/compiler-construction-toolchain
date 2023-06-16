@@ -22,5 +22,17 @@ USER user
 RUN echo "export PATH=${HOME}/.local/bin:${PATH}" >> ${HOME}/.bashrc
 RUN stack --resolver lts-18.28 --install-ghc install BNFC alex happy
 
+# Install rust toolchain for building the helix editor from source.
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o ~/rustup.sh && chmod u+x ~/rustup.sh && ~/rustup.sh -y
+
+# Install the helix editor
+RUN git clone https://github.com/helix-editor/helix.git ~/helix
+RUN cd ~/helix && export PATH=$PATH:$HOME/.cargo/bin && cargo install --path helix-term && hx --grammar fetch && hx --grammar build
+RUN echo "alias helix=~/.cargo/bin/hx" >> ~/.bashrc
+
+USER root
+RUN apt-get -y install clangd bear
+USER user
+
 # Prepare folder for volume mount.
 RUN mkdir ${HOME}/cc
