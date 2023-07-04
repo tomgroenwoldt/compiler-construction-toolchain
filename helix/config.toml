@@ -1,0 +1,21 @@
+theme = "autumn"
+
+[editor]
+true-color = true
+line-number = "relative"
+mouse = false
+auto-format = true
+cursorline = true
+cursorcolumn = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+right = ["version-control", "diagnostics", "selections", "position", "file-encoding"]
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]

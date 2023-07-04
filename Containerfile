@@ -4,7 +4,7 @@ FROM debian:bullseye
 RUN apt-get update
 RUN apt-get -y install bison build-essential clang-9 curl flex \
 ghc git libedit-dev libgmp-dev libz-dev \
-llvm-9 libnuma-dev wget lsb-release p7zip
+llvm-9 libnuma-dev wget lsb-release p7zip-full clangd bear
 RUN curl -sSL https://get.haskellstack.org/ | sh
 
 # Install convenient tools for development. 
@@ -29,10 +29,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o ~/rustup.sh && 
 RUN git clone https://github.com/helix-editor/helix.git ~/helix
 RUN cd ~/helix && export PATH=$PATH:$HOME/.cargo/bin && cargo install --path helix-term && hx --grammar fetch && hx --grammar build
 RUN echo "alias helix=~/.cargo/bin/hx" >> ~/.bashrc
-
-USER root
-RUN apt-get -y install clangd bear
-USER user
+COPY helix /home/user/.config/helix
 
 # Prepare folder for volume mount.
 RUN mkdir ${HOME}/cc
